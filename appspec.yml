@@ -1,0 +1,17 @@
+## ─────────────────────────────────────────────────────────────────────────────
+## appspec.yml — ECS Deployment (used by AWS CodeDeploy / CodePipeline ECS action)
+##
+## This file tells CodePipeline which ECS task definition + container to update.
+## The <TASK_DEFINITION> placeholder is replaced at deploy time by taskdef.json.
+## ─────────────────────────────────────────────────────────────────────────────
+
+version: 0.0
+
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "mern-app-container"
+          ContainerPort: 5000
