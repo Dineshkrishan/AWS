@@ -5,7 +5,7 @@
 # ─────────────────────────────────────────────────────────────────
 
 # ── Stage 1: Build React ──────────────────────────────────────────
-FROM node:18-alpine AS build-client
+FROM public.ecr.aws/docker/library/node:18-alpine AS build-client
 
 WORKDIR /app/client
 
@@ -19,7 +19,7 @@ RUN npm run build
 
 
 # ── Stage 2: Production Express Server ───────────────────────────
-FROM node:18-alpine AS production
+FROM public.ecr.aws/docker/library/node:18-alpine AS production
 
 # Create non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
